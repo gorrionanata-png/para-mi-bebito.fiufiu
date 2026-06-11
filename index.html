@@ -5,102 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi bebito fiu fiu ❤️</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #0b1a10; background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(27, 63, 41, 0.5) 0%, #09130c 100%); background-attachment: fixed; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #e2ebd5; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; min-height: 100vh; position: relative; }
-        .contenedor { width: 95%; max-width: 750px; padding: 60px 0; z-index: 10; display: flex; flex-direction: column; position: relative; }
-        h1 { font-size: 2.6rem; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.6); margin-bottom: 55px; text-align: center; }
-        p.frase-central { font-size: 1.35rem; line-height: 1.7; color: #e2ebd5; font-weight: 500; margin: 50px auto; text-align: center; max-width: 600px; }
-        .marco-blanco { border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.4); background-color: #f7f9f6; }
-        .fila-laterales { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 35px 0; gap: 20px; }
-        .foto-lateral { width: 45%; }
-        .video-centro { width: 85%; max-width: 600px; margin: 60px 0; align-self: center; }
-        .botones { display: flex; justify-content: center; gap: 20px; position: relative; height: 130px; width: 100%; margin-top: 45px; }
+        body { margin: 0; padding: 0; background-color: #0b1a10; font-family: 'Segoe UI', sans-serif; color: #e2ebd5; min-height: 100vh; overflow-x: hidden; }
+
+        /* PANTALLA DE BIENVENIDA */
+        #pantallaInicio {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #0b1a10; z-index: 9999; display: flex;
+            flex-direction: column; justify-content: center; align-items: center;
+        }
+        .btn-inicio { padding: 20px 40px; font-size: 1.5rem; border-radius: 50px; border: none; background: #57cc99; color: #0b1a10; cursor: pointer; font-weight: bold; }
+
+        /* EL RESTO DEL DISEÑO (OCULTO AL INICIO) */
+        #contenidoPrincipal { display: none; }
+        
+        /* MANTENEMOS TU DISEÑO ANTERIOR */
+        body { background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%); background-attachment: fixed; }
+        .contenedor { width: 95%; max-width: 750px; margin: auto; padding: 60px 0; display: flex; flex-direction: column; align-items: center; }
+        .marco-blanco { border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.4); margin: 30px 0; }
+        .video-centro { width: 85%; max-width: 600px; }
+        .fila-laterales { display: flex; justify-content: space-between; width: 100%; gap: 20px; }
+        .foto-lateral { width: 45%; border-radius: 20px; border: 6px solid white; }
         .btn-accion { padding: 16px 45px; font-size: 1.3rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; }
         #btnSi { background-color: #2e7d32; color: white; }
         #btnNo { background-color: #e57373; color: white; position: absolute; }
-        #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); backdrop-filter: blur(15px); padding: 40px; border-radius: 32px; z-index: 2000; text-align: center; width: 88%; max-width: 480px; }
+        #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); padding: 40px; border-radius: 32px; z-index: 2000; text-align: center; width: 80%; }
         #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; }
     </style>
 </head>
 <body>
 
-    <audio id="miMusica" loop preload="auto">
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
+    <div id="pantallaInicio">
+        <h1 style="color:white; margin-bottom: 30px;">¡Hola, amor! ❤️</h1>
+        <button class="btn-inicio" onclick="iniciarExperiencia()">Para mi bebito fiu fiu</button>
+    </div>
 
-    <div class="contenedor">
-        <h1>Para mi persona favorita... 👑❤️</h1>
-        
-        <div class="fila-laterales">
-            <img src="mascaras.jpeg" class="marco-blanco foto-lateral">
-            <img src="mascarillas.jpeg" class="marco-blanco foto-lateral">
-        </div>
+    <div id="contenidoPrincipal">
+        <audio id="miMusica" loop preload="auto">
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
 
-        <p class="frase-central">
-            Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.
-        </p>
+        <div class="contenedor">
+            <h1>Para mi persona favorita... 👑❤️</h1>
+            
+            <div class="fila-laterales">
+                <img src="mascaras.jpeg" class="foto-lateral">
+                <img src="mascarillas.jpeg" class="foto-lateral">
+            </div>
 
-        <div class="fila-laterales" style="justify-content: flex-start;">
-            <img src="lola.jpeg" class="marco-blanco foto-lateral">
-        </div>
+            <p style="font-size: 1.3rem; text-align: center; max-width: 600px; margin: 30px 0;">
+                Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto.
+            </p>
 
-        <video autoplay muted loop playsinline preload="auto" class="marco-blanco video-centro">
-            <source src="coqueto.mp4" type="video/mp4">
-        </video>
+            <video autoplay muted loop playsinline class="marco-blanco video-centro">
+                <source src="coqueto.mp4" type="video/mp4">
+            </video>
 
-        <p class="frase-central">
-            Confío muchísimo en ti y en todo lo que sabes. No llegaste hasta aquí por suerte, llegaste porque te esforzaste y porque tienes la capacidad para lograr lo que te propones. Así que ve con confianza, respira y demuestra todo lo que has aprendido.
-        </p>
+            <div class="fila-laterales">
+                <img src="pepito.jpeg" class="foto-lateral">
+                <img src="angel.jpeg" class="foto-lateral">
+            </div>
 
-        <div class="fila-laterales">
-            <img src="pepito.jpeg" class="marco-blanco foto-lateral">
-            <img src="angel.jpeg" class="marco-blanco foto-lateral">
-        </div>
+            <video autoplay muted loop playsinline class="marco-blanco video-centro">
+                <source src="terry.mp4" type="video/mp4">
+            </video>
 
-        <div class="fila-laterales">
-            <img src="milo.jpeg" class="marco-blanco foto-lateral">
-            <img src="nata.jpeg" class="marco-blanco foto-lateral">
-        </div>
-
-        <video autoplay muted loop playsinline preload="auto" class="marco-blanco video-centro">
-            <source src="terry.mp4" type="video/mp4">
-        </video>
-
-        <p class="frase-central">
-            Y pase lo que pase, quiero que sepas que siempre voy a estar para ti. Mi apoyo, mi cariño y mi admiración por ti no dependen de una calificación ni de un examen. Te quiero en tus mejores días y también en los difíciles. Eres una de las personas más especiales de mi vida y sé que puedes lograr grandes cosas. Te amo muchísimo y estoy segura de que te va a ir muy bien. ❤️
-        </p>
-
-        <div class="fila-laterales">
-            <img src="la.jpeg" class="marco-blanco foto-lateral">
-            <img src="mejor.jpeg" class="marco-blanco foto-lateral">
-        </div>
-
-        <div class="botones">
-            <button id="btnSi" class="btn-accion" onclick="mostrarExito()">¡Sí, lo haré! 🧠✨</button>
-            <button id="btnNo" class="btn-accion">No puedo...</button>
+            <div class="botones" style="height: 150px; position: relative;">
+                <button id="btnSi" class="btn-accion" onclick="mostrarExito()">¡Sí, lo haré! 🧠✨</button>
+                <button id="btnNo" class="btn-accion">No puedo...</button>
+            </div>
         </div>
     </div>
 
     <div id="overlay"></div>
     <div id="modalExito">
-        <h2>¡Esa es la actitud, mi amor! 🏆🎉</h2>
-        <p>Sabía que ibas a decir que sí. Ahora ve con toda la seguridad del mundo a romper ese examen. ¡Cómete el mundo, que aquí voy a estar esperándote para celebrar! ¡Te amo muchísimo! ❤️🚀</p>
-        <button class="btn-accion" onclick="cerrarModal()" style="background: #57cc99; color: #0b1a10;">Te voy a llevar en mi corazón siempre ❤️</button>
+        <h2 style="color: #57cc99;">¡Esa es la actitud, mi amor! 🏆🎉</h2>
+        <button onclick="cerrarModal()" style="padding: 15px; border-radius: 20px; border:none; cursor:pointer;">Cerrar</button>
     </div>
 
     <script>
-        const musica = document.getElementById('miMusica');
-        const btnNo = document.getElementById('btnNo');
-
-        function activarMusica() {
-            musica.play().then(() => {
-                document.removeEventListener('click', activarMusica);
-            }).catch(e => console.log("Esperando interacción"));
+        function iniciarExperiencia() {
+            // Ocultar inicio, mostrar contenido
+            document.getElementById('pantallaInicio').style.display = 'none';
+            document.getElementById('contenidoPrincipal').style.display = 'block';
+            
+            // Reproducir música
+            const musica = document.getElementById('miMusica');
+            musica.play();
         }
-        document.addEventListener('click', activarMusica);
 
+        const btnNo = document.getElementById('btnNo');
         btnNo.addEventListener('mouseenter', () => {
-            btnNo.style.left = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25) + 'px';
-            btnNo.style.top = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25) + 'px';
+            btnNo.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            btnNo.style.top = Math.random() * (window.innerHeight - 100) + 'px';
         });
 
         function mostrarExito() {
