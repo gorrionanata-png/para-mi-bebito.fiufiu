@@ -194,7 +194,7 @@
 <body>
 
     <audio id="miMusica" loop preload="auto">
-        <source src="musica.mp3">
+        <source src="musica.mp3" type="audio/mpeg">
     </audio>
 
     <div class="contenedor">
@@ -213,7 +213,7 @@
             <img src="lola.jpeg" class="marco-blanco foto-lateral">
         </div>
 
-        <video autoplay muted loop playsinline class="marco-blanco video-centro">
+        <video autoplay muted loop playsinline preload="auto" class="marco-blanco video-centro">
             <source src="coqueto.mp4" type="video/mp4">
         </video>
 
@@ -231,7 +231,7 @@
             <img src="nata.jpeg" class="marco-blanco foto-lateral">
         </div>
 
-        <video autoplay muted loop playsinline class="marco-blanco video-centro">
+        <video autoplay muted loop playsinline preload="auto" class="marco-blanco video-centro">
             <source src="terry.mp4" type="video/mp4">
         </video>
 
@@ -268,7 +268,6 @@
         const musica = document.getElementById('miMusica');
         const btnNo = document.getElementById('btnNo');
 
-        // Activa la música con la primera interacción del usuario en la pantalla
         function activarMusicaAutomatica() {
             musica.play().then(() => {
                 window.removeEventListener('click', activarMusicaAutomatica);
