@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi bebito fiu fiu ❤️</title>
     <style>
+        /* 1. FONDO DE ONDAS ABSTRACTAS VERDES */
         body {
             margin: 0;
             padding: 0;
@@ -23,7 +24,6 @@
             min-height: 100vh;
             position: relative;
         }
-
         body::before {
             content: "";
             position: fixed;
@@ -35,7 +35,7 @@
             opacity: 0.7;
             filter: blur(4px);
         }
-
+        /* 2. ESTRELLAS GLOBITO TRIDIMENSIONALES GRANDES */
         .estrella-globo {
             position: fixed;
             background: rgba(255, 255, 255, 0.12);
@@ -49,7 +49,17 @@
                 0 8px 20px rgba(0, 0, 0, 0.15);
             backdrop-filter: blur(1px);
         }
-
+        .estrella-globo::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 22%;
+            width: 22%;
+            height: 22%;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 50%;
+            transform: rotate(-30deg);
+        }
         @keyframes flotarGlobo {
             0% { transform: translateY(110vh) scale(0.9) rotate(0deg); opacity: 0; }
             10% { opacity: 0.85; }
@@ -57,16 +67,40 @@
             100% { transform: translateY(-20vh) scale(1.2) rotate(30deg); opacity: 0; }
         }
 
+        /* NUEVO BOTÓN DE INICIO DE MÚSICA */
+        #btnInicioMusica {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            padding: 18px 50px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+        }
+        #btnInicioMusica:hover {
+            transform: translateX(-50%) scale(1.08);
+            box-shadow: 0 15px 35px rgba(46,125,50,0.5);
+        }
+
+        /* 3. CONTENEDOR HOLGADO Y PRINCIPAL */
         .contenedor {
             width: 95%;
             max-width: 750px;
-            padding: 60px 0;
+            padding: 100px 0 60px 0; /* más padding arriba por el botón fijo */
             z-index: 10;
             display: flex;
             flex-direction: column;
             position: relative;
         }
-
         h1 {
             font-size: 2.6rem;
             color: #ffffff;
@@ -75,7 +109,6 @@
             text-align: center;
             letter-spacing: 0.5px;
         }
-
         p.frase-central {
             font-size: 1.35rem;
             line-height: 1.7;
@@ -86,16 +119,15 @@
             text-align: center;
             max-width: 600px;
         }
-
+        /* 4. MARCOS MULTIMEDIA Y FILAS LATERALES */
         .marco-blanco {
             border-radius: 20px;
             border: 6px solid white;
             box-shadow: 0 15px 35px rgba(0,0,0,0.4);
             background-color: #f7f9f6;
+            box-sizing: border-box;
             transition: transform 0.4s ease;
-            width: 100%;
         }
-
         .fila-laterales {
             display: flex;
             justify-content: space-between;
@@ -104,26 +136,29 @@
             margin: 35px 0;
             gap: 20px;
         }
-
         .foto-lateral {
             width: 45%;
         }
-
+        .foto-lateral:hover {
+            transform: scale(1.06);
+            z-index: 15;
+        }
         .video-centro {
             width: 85%;
             max-width: 600px;
             margin: 60px 0;
             align-self: center;
         }
-
+        /* 5. INTERFAZ DE BOTONES */
         .botones {
             display: flex;
             justify-content: center;
             gap: 20px;
             position: relative;
+            height: 130px;
+            width: 100%;
             margin-top: 45px;
         }
-
         .btn-accion {
             padding: 16px 45px;
             font-size: 1.3rem;
@@ -131,12 +166,13 @@
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
         }
-
         #btnSi { background-color: #2e7d32; color: white; }
-        #btnNo { background-color: #e57373; color: white; position: relative; }
-
+        #btnSi:hover { transform: scale(1.1); background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46,125,50,0.4); }
+        #btnNo { background-color: #e57373; color: white; position: absolute; }
+        /* 6. MODAL CON DISEÑO VERDE CRISTALINO (GLASSMORPHISM) */
         #modalExito {
             display: none;
             position: fixed;
@@ -144,68 +180,153 @@
             left: 50%;
             transform: translate(-50%, -50%);
             background: rgba(11, 40, 20, 0.95);
+            backdrop-filter: blur(15px);
+            color: #f1f7ed;
             padding: 40px 30px;
             border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 65px rgba(0,0,0,0.8);
             z-index: 2000;
-            text-align: center;
             width: 88%;
             max-width: 480px;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
         }
+        #modalExito h2 { color: #57cc99; margin-top: 0; font-size: 1.8rem; font-weight: bold; line-height: 1.3; }
+        #modalExito p { color: #e2ebd5; font-size: 1.2rem; line-height: 1.75; font-weight: 500; text-align: center; margin: 25px 0; text-shadow: none; }
+        #modalExito button { background: #57cc99; color: #0b1a10; margin-top: 20px; padding: 14px 30px; font-size: 1.15rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 100%; max-width: 380px;}
+        #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; backdrop-filter: blur(7px); }
     </style>
 </head>
 <body>
-    <audio id="miMusica" loop>
-        <source src="musica.mp3" type="audio/mpeg">
-    </audio>
+<audio id="miMusica" loop preload="auto">
+    <source src="musica.mp3">
+</audio>
 
-    <div class="contenedor">
-        <h1>Para mi persona favorita... 👑❤️</h1>
+<!-- NUEVO BOTÓN DE INICIO -->
+<button id="btnInicioMusica" onclick="iniciarMusica()">
+    Para mi bebito fiu fiu ❤️
+</button>
+
+<div class="contenedor">
+    <h1>Para mi persona favorita... 👑❤️</h1>
+    <div class="fila-laterales">
+        <img src="mascaras.jpeg" class="marco-blanco foto-lateral">
+        <img src="mascarillas.jpeg" class="marco-blanco foto-lateral">
+    </div>
+    <p class="frase-central">
+        Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.
+    </p>
+    <div class="fila-laterales" style="justify-content: flex-start;">
+        <img src="lola.jpeg" class="marco-blanco foto-lateral">
+    </div>
+    <video autoplay muted loop playsinline class="marco-blanco video-centro">
+        <source src="coqueto.mp4" type="video/mp4">
+    </video>
+    <p class="frase-central">
+        Confío muchísimo en ti y en todo lo que sabes. No llegaste hasta aquí por suerte, llegaste porque te esforzaste y porque tienes la capacidad para lograr lo que te propones. Así que ve con confianza, respira y demuestra todo lo que has aprendido.
+    </p>
+    <div class="fila-laterales">
+        <img src="pepito.jpeg" class="marco-blanco foto-lateral">
+        <img src="angel.jpeg" class="marco-blanco foto-lateral">
+    </div>
+    <div class="fila-laterales">
+        <img src="milo.jpeg" class="marco-blanco foto-lateral">
+        <img src="nata.jpeg" class="marco-blanco foto-lateral">
+    </div>
+    <video autoplay muted loop playsinline class="marco-blanco video-centro">
+        <source src="terry.mp4" type="video/mp4">
+    </video>
+    <p class="frase-central">
+        Y pase lo que pase, quiero que sepas que siempre voy a estar para ti. Mi apoyo, mi cariño y mi admiración por ti no dependen de una calificación ni de un examen. Te quiero en tus mejores días y también en los difíciles. Eres una de las personas más especiales de mi vida y sé que puedes lograr grandes cosas. Te amo muchísimo y estoy segura de que te va a ir muy bien. ❤️
+    </p>
+    <div class="fila-laterales">
+        <img src="la.jpeg" class="marco-blanco foto-lateral">
+        <img src="mejor.jpeg" class="marco-blanco foto-lateral">
+    </div>
+    <p class="frase-central" style="font-weight: bold; color: #57cc99;">¿Me prometes que vas a dar lo mejor de ti hoy? ✨</p>
+    <div class="botones">
+        <button id="btnSi" class="btn-accion" onclick="mostrarExito()">¡Sí, lo haré! 🧠✨</button>
+        <button id="btnNo" class="btn-accion">No puedo...</button>
+    </div>
+</div>
+
+<div id="overlay"></div>
+<div id="modalExito">
+    <h2>¡Esa es la actitud, mi amor! 🏆🎉</h2>
+    <p>
+        Sabía que ibas a decir que sí. Ahora ve con toda la seguridad del mundo a romper ese examen. ¡Cómete el mundo, que aquí voy a estar esperándote para celebrar!
+    </p>
+    <p style="font-size: 1.4rem; font-weight: bold; color: #57cc99;">
+        ¡Te amo muchísimo! ❤️🚀
+    </p>
+    <button onclick="cerrarModal()">Te voy a llevar en mi corazón siempre ❤️</button>
+</div>
+
+<script>
+    const musica = document.getElementById('miMusica');
+    const btnNo = document.getElementById('btnNo');
+    const btnInicioMusica = document.getElementById('btnInicioMusica');
+
+    // Función para iniciar la música desde el botón
+    function iniciarMusica() {
+        musica.play().then(() => {
+            // Ocultamos el botón una vez que la música empieza
+            btnInicioMusica.style.display = 'none';
+        }).catch(e => {
+            console.log("Error al reproducir música:", e);
+        });
+    }
+
+    function moverBotonNo() {
+        const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25);
+        const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25);
+        btnNo.style.position = 'fixed';
+        btnNo.style.left = `${x}px`;
+        btnNo.style.top = `${y}px`;
+        btnNo.style.zIndex = "1000";
+    }
+
+    btnNo.addEventListener('mouseenter', () => moverBotonNo());
+    btnNo.addEventListener('touchstart', () => moverBotonNo());
+
+    function mostrarExito() {
+        document.getElementById('modalExito').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+        btnNo.style.display = 'none';
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalExito').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function crearEstrellaGlobo() {
+        const estrella = document.createElement('div');
+        estrella.classList.add('estrella-globo');
+        const tamaño = Math.random() * 35 + 35;
+        estrella.style.width = `${tamaño}px`;
+        estrella.style.height = `${tamaño}px`;
+        estrella.style.left = Math.random() * window.innerWidth + 'px';
+        const duracion = Math.random() * 10 + 7;
+        estrella.style.animationDuration = `${duracion}s`;
+        document.body.appendChild(estrella);
+        setTimeout(() => { estrella.remove(); }, duracion * 1000);
+    }
+
+    setInterval(crearEstrellaGlobo, 450);
+
+    // Aseguramos que los videos se reproduzcan automáticamente (ya tienen autoplay y muted)
+    document.querySelectorAll('video').forEach(video => {
+        video.muted = true;           // Garantizamos que no tengan sonido
+        video.autoplay = true;
+        video.loop = true;
+        video.playsInline = true;
         
-        <p class="frase-central">
-            Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.
-        </p>
-
-        <div class="fila-laterales">
-            <img src="lola.jpeg" class="marco-blanco foto-lateral" alt="Imagen 1">
-            <img src="terry.jpeg" class="marco-blanco foto-lateral" alt="Imagen 2">
-        </div>
-
-        <video autoplay muted loop class="marco-blanco video-centro">
-            <source src="coqueto.mp4" type="video/mp4">
-        </video>
-
-        <p class="frase-central">
-            Confío muchísimo en ti y en todo lo que sabes. No llegaste hasta aquí por suerte, llegaste porque te esforzaste y porque tienes la capacidad para lograr lo que te propones. Así que ve con confianza, respira y demuestra todo lo que has aprendido.
-        </p>
-
-        <p class="frase-central" style="font-weight: bold; color: #57cc99;">¿Me prometes que vas a dar lo mejor de ti hoy? ✨</p>
-
-        <div class="botones">
-            <button id="btnSi" class="btn-accion">¡Sí, lo haré! 🧠✨</button>
-            <button id="btnNo" class="btn-accion">No puedo...</button>
-        </div>
-    </div>
-
-    <div id="modalExito">
-        <h2>¡Esa es la actitud, mi amor! 🏆🎉</h2>
-        <p>Sabía que ibas a decir que sí. Ahora ve con toda la seguridad del mundo a romper ese examen. ¡Cómete el mundo, que aquí voy a estar esperándote para celebrar!</p>
-        <p style="font-size: 1.4rem; font-weight: bold; color: #57cc99;">¡Te amo muchísimo! ❤️🚀</p>
-    </div>
-
-    <script>
-        document.getElementById('btnSi').addEventListener('click', function() {
-            document.getElementById('modalExito').style.display = 'block';
-            document.getElementById('miMusica').play();
-        });
-
-        const btnNo = document.getElementById('btnNo');
-        btnNo.addEventListener('mouseover', function() {
-            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth);
-            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight);
-            btnNo.style.left = x + 'px';
-            btnNo.style.top = y + 'px';
-            btnNo.style.position = 'fixed';
-        });
-    </script>
+        // Forzamos reproducción en algunos navegadores
+        video.play().catch(e => console.log("Video autoplay en espera"));
+    });
+</script>
 </body>
 </html>
