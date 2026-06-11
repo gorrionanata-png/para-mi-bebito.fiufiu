@@ -5,19 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi bebito fiu fiu ❤️</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #0b1a10; background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(27, 63, 41, 0.5) 0%, #09130c 100%); background-attachment: fixed; font-family: 'Segoe UI', sans-serif; color: #e2ebd5; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; min-height: 100vh; }
+        body { margin: 0; padding: 0; background-color: #0b1a10; background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(27, 63, 41, 0.5) 0%, #09130c 100%); background-attachment: fixed; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #e2ebd5; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; min-height: 100vh; position: relative; }
         .contenedor { width: 95%; max-width: 750px; padding: 60px 0; z-index: 10; display: flex; flex-direction: column; position: relative; }
         h1 { font-size: 2.6rem; color: #ffffff; text-shadow: 0 4px 12px rgba(0,0,0,0.6); margin-bottom: 55px; text-align: center; }
-        p.frase-central { font-size: 1.35rem; line-height: 1.7; color: #e2ebd5; margin: 50px auto; text-align: center; max-width: 600px; }
+        p.frase-central { font-size: 1.35rem; line-height: 1.7; color: #e2ebd5; font-weight: 500; margin: 50px auto; text-align: center; max-width: 600px; }
         .marco-blanco { border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.4); background-color: #f7f9f6; }
         .fila-laterales { display: flex; justify-content: space-between; align-items: center; width: 100%; margin: 35px 0; gap: 20px; }
         .foto-lateral { width: 45%; }
         .video-centro { width: 85%; max-width: 600px; margin: 60px 0; align-self: center; }
-        .botones { display: flex; justify-content: center; gap: 20px; height: 130px; width: 100%; margin-top: 45px; }
+        .botones { display: flex; justify-content: center; gap: 20px; position: relative; height: 130px; width: 100%; margin-top: 45px; }
         .btn-accion { padding: 16px 45px; font-size: 1.3rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; }
         #btnSi { background-color: #2e7d32; color: white; }
         #btnNo { background-color: #e57373; color: white; position: absolute; }
-        #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); backdrop-filter: blur(15px); padding: 40px; border-radius: 32px; z-index: 2000; text-align: center; width: 80%; max-width: 480px; }
+        #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); backdrop-filter: blur(15px); padding: 40px; border-radius: 32px; z-index: 2000; text-align: center; width: 88%; max-width: 480px; }
+        #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; }
     </style>
 </head>
 <body>
@@ -38,7 +39,9 @@
             Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.
         </p>
 
-        <div class="fila-laterales"><img src="lola.jpeg" class="marco-blanco foto-lateral"></div>
+        <div class="fila-laterales" style="justify-content: flex-start;">
+            <img src="lola.jpeg" class="marco-blanco foto-lateral">
+        </div>
 
         <video autoplay muted loop playsinline preload="auto" class="marco-blanco video-centro">
             <source src="coqueto.mp4" type="video/mp4">
@@ -77,10 +80,11 @@
         </div>
     </div>
 
+    <div id="overlay"></div>
     <div id="modalExito">
         <h2>¡Esa es la actitud, mi amor! 🏆🎉</h2>
-        <p>¡Te amo muchísimo! ❤️🚀</p>
-        <button class="btn-accion" onclick="cerrarModal()" style="background: #57cc99;">Cerrar</button>
+        <p>Sabía que ibas a decir que sí. Ahora ve con toda la seguridad del mundo a romper ese examen. ¡Cómete el mundo, que aquí voy a estar esperándote para celebrar! ¡Te amo muchísimo! ❤️🚀</p>
+        <button class="btn-accion" onclick="cerrarModal()" style="background: #57cc99; color: #0b1a10;">Te voy a llevar en mi corazón siempre ❤️</button>
     </div>
 
     <script>
@@ -90,17 +94,23 @@
         function activarMusica() {
             musica.play().then(() => {
                 document.removeEventListener('click', activarMusica);
-            }).catch(e => console.log("Esperando clic"));
+            }).catch(e => console.log("Esperando interacción"));
         }
         document.addEventListener('click', activarMusica);
 
         btnNo.addEventListener('mouseenter', () => {
-            btnNo.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            btnNo.style.top = Math.random() * (window.innerHeight - 100) + 'px';
+            btnNo.style.left = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25) + 'px';
+            btnNo.style.top = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25) + 'px';
         });
 
-        function mostrarExito() { document.getElementById('modalExito').style.display = 'block'; }
-        function cerrarModal() { document.getElementById('modalExito').style.display = 'none'; }
+        function mostrarExito() {
+            document.getElementById('modalExito').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+        }
+        function cerrarModal() {
+            document.getElementById('modalExito').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+        }
     </script>
 </body>
 </html>
