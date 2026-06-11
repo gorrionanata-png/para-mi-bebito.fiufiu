@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi bebito fiu fiu ❤️</title>
     <style>
-        /* ESTILOS ORIGINALES */
+        /* DISEÑO ORIGINAL */
         body { margin: 0; padding: 0; background-color: #0b1a10; background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%), radial-gradient(circle at 50% 50%, rgba(27, 63, 41, 0.5) 0%, #09130c 100%); background-attachment: fixed; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #e2ebd5; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; min-height: 100vh; position: relative; }
         body::before { content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23132d1b' opacity='0.3' d='M486 705c-45-23-94-44-142-66-82-38-164-76-248-112-14-6-29-11-44-15V0h1400v234c-28 12-58 24-88 34-118 41-239 74-362 99-138 29-278 45-419 46-34 0-68-1-102-3-118-7-234-24-347-53-48-12-96-26-143-43V705z'/%3E%3C/g%3E%3C/svg%3E") no-repeat center center; background-size: cover; z-index: 0; pointer-events: none; opacity: 0.7; filter: blur(4px); }
         .estrella-globo { position: fixed; background: rgba(255, 255, 255, 0.12); clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); animation: flotarGlobo linear infinite; z-index: 1; pointer-events: none; box-shadow: inset 0 0 18px rgba(255, 255, 255, 0.65), inset -5px -5px 15px rgba(0, 0, 0, 0.2), 0 8px 20px rgba(0, 0, 0, 0.15); backdrop-filter: blur(1px); }
@@ -22,26 +22,23 @@
         .botones { display: flex; justify-content: center; gap: 20px; position: relative; height: 130px; width: 100%; margin-top: 45px; }
         .btn-accion { padding: 16px 45px; font-size: 1.3rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
         #btnSi { background-color: #2e7d32; color: white; }
-        #btnSi:hover { transform: scale(1.1); background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46,125,50,0.4); }
         #btnNo { background-color: #e57373; color: white; position: absolute; }
         #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); backdrop-filter: blur(15px); color: #f1f7ed; padding: 40px 30px; border-radius: 32px; border: 1px solid rgba(255, 255, 255, 0.2); box-shadow: 0 25px 65px rgba(0,0,0,0.8); z-index: 2000; width: 88%; max-width: 480px; text-align: center; max-height: 80vh; overflow-y: auto; }
         #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; backdrop-filter: blur(7px); }
         
         /* BOTÓN INICIAL */
         #pantallaInicio { position: fixed; top:0; left:0; width:100%; height:100%; background: #0b1a10; z-index: 5000; display: flex; justify-content: center; align-items: center; }
-        #btnInicio { padding: 25px 50px; font-size: 1.8rem; background: #2e7d32; color: white; border: none; border-radius: 50px; cursor: pointer; box-shadow: 0 10px 25px rgba(46,125,50,0.4); }
+        #btnInicio { padding: 25px 50px; font-size: 1.8rem; background: #2e7d32; color: white; border: none; border-radius: 50px; cursor: pointer; }
     </style>
 </head>
 <body>
 
     <div id="pantallaInicio">
-        <button id="btnInicio" onclick="iniciarTodo()">Para mi bebito fiu fiu</button>
+        <button id="btnInicio" onclick="iniciarExperiencia()">Para mi bebito fiu fiu</button>
     </div>
 
     <div id="contenidoPrincipal" style="display:none;">
-        <audio id="miMusica" loop preload="auto">
-            <source src="musica.mp3">
-        </audio>
+        <audio id="miMusica" loop preload="auto"><source src="musica.mp3"></audio>
 
         <div class="contenedor">
             <h1>Para mi persona favorita... 👑❤️</h1>
@@ -52,9 +49,7 @@
             <p class="frase-central">Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.</p>
             <div class="fila-laterales" style="justify-content: flex-start;"><img src="lola.jpeg" class="marco-blanco foto-lateral"></div>
             
-            <video autoplay muted loop playsinline class="marco-blanco video-centro">
-                <source src="coqueto.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="marco-blanco video-centro"><source src="coqueto.mp4" type="video/mp4"></video>
 
             <p class="frase-central">Confío muchísimo en ti y en todo lo que sabes. No llegaste hasta aquí por suerte, llegaste porque te esforzaste y porque tienes la capacidad para lograr lo que te propones. Así que ve con confianza, respira y demuestra todo lo que has aprendido.</p>
 
@@ -67,9 +62,7 @@
                 <img src="nata.jpeg" class="marco-blanco foto-lateral">
             </div>
 
-            <video autoplay muted loop playsinline class="marco-blanco video-centro">
-                <source src="terry.mp4" type="video/mp4">
-            </video>
+            <video autoplay muted loop playsinline class="marco-blanco video-centro"><source src="terry.mp4" type="video/mp4"></video>
 
             <p class="frase-central">Y pase lo que pase, quiero que sepas que siempre voy a estar para ti. Mi apoyo, mi cariño y mi admiración por ti no dependen de una calificación ni de un examen. Te quiero en tus mejores días y también en los difíciles. Eres una de las personas más especiales de mi vida y sé que puedes lograr grandes cosas. Te amo muchísimo y estoy segura de que te va a ir muy bien. ❤️</p>
             <div class="fila-laterales">
@@ -91,47 +84,37 @@
         </div>
     </div>
 
-<script>
-    function iniciarTodo() {
-        document.getElementById('pantallaInicio').style.display = 'none';
-        document.getElementById('contenidoPrincipal').style.display = 'block';
-        document.getElementById('miMusica').play();
-        setInterval(crearEstrellaGlobo, 450);
-    }
-
-    const btnNo = document.getElementById('btnNo');
-    function moverBotonNo() {
-        const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25);
-        const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25);
-        btnNo.style.position = 'fixed';
-        btnNo.style.left = `${x}px`;
-        btnNo.style.top = `${y}px`;
-    }
-    btnNo.addEventListener('mouseenter', moverBotonNo);
-    btnNo.addEventListener('touchstart', moverBotonNo);
-
-    function mostrarExito() {
-        document.getElementById('modalExito').style.display = 'block';
-        document.getElementById('overlay').style.display = 'block';
-        btnNo.style.display = 'none';
-    }
-    function cerrarModal() {
-        document.getElementById('modalExito').style.display = 'none';
-        document.getElementById('overlay').style.display = 'none';
-    }
-
-    function crearEstrellaGlobo() {
-        const estrella = document.createElement('div');
-        estrella.classList.add('estrella-globo');
-        const tamaño = Math.random() * 35 + 35;
-        estrella.style.width = `${tamaño}px`;
-        estrella.style.height = `${tamaño}px`;
-        estrella.style.left = Math.random() * window.innerWidth + 'px';
-        const duracion = Math.random() * 10 + 7;
-        estrella.style.animationDuration = `${duracion}s`;
-        document.body.appendChild(estrella);
-        setTimeout(() => { estrella.remove(); }, duracion * 1000);
-    }
-</script>
+    <script>
+        function iniciarExperiencia() {
+            document.getElementById('pantallaInicio').style.display = 'none';
+            document.getElementById('contenidoPrincipal').style.display = 'block';
+            document.getElementById('miMusica').play();
+            setInterval(crearEstrellaGlobo, 450);
+        }
+        const btnNo = document.getElementById('btnNo');
+        function moverBotonNo() {
+            const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25);
+            const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25);
+            btnNo.style.position = 'fixed';
+            btnNo.style.left = `${x}px`;
+            btnNo.style.top = `${y}px`;
+        }
+        btnNo.addEventListener('mouseenter', moverBotonNo);
+        btnNo.addEventListener('touchstart', moverBotonNo);
+        function mostrarExito() { document.getElementById('modalExito').style.display = 'block'; document.getElementById('overlay').style.display = 'block'; btnNo.style.display = 'none'; }
+        function cerrarModal() { document.getElementById('modalExito').style.display = 'none'; document.getElementById('overlay').style.display = 'none'; }
+        function crearEstrellaGlobo() {
+            const estrella = document.createElement('div');
+            estrella.classList.add('estrella-globo');
+            const tam = Math.random() * 35 + 35;
+            estrella.style.width = `${tam}px`;
+            estrella.style.height = `${tam}px`;
+            estrella.style.left = Math.random() * window.innerWidth + 'px';
+            const dur = Math.random() * 10 + 7;
+            estrella.style.animationDuration = `${dur}s`;
+            document.body.appendChild(estrella);
+            setTimeout(() => { estrella.remove(); }, dur * 1000);
+        }
+    </script>
 </body>
 </html>
