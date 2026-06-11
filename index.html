@@ -5,108 +5,329 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para mi bebito fiu fiu ❤️</title>
     <style>
-        body { margin: 0; padding: 0; background-color: #0b1a10; font-family: 'Segoe UI', sans-serif; color: #e2ebd5; min-height: 100vh; overflow-x: hidden; }
+        /* 1. FONDO DE ONDAS ABSTRACTAS VERDES */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0b1a10;
+            background-image:
+                radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%),
+                radial-gradient(circle at 50% 50%, rgba(27, 63, 41, 0.5) 0%, #09130c 100%);
+            background-attachment: fixed;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #e2ebd5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+        }
 
-        /* PANTALLA DE BIENVENIDA */
-        #pantallaInicio {
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpath fill='%23132d1b' opacity='0.3' d='M486 705c-45-23-94-44-142-66-82-38-164-76-248-112-14-6-29-11-44-15V0h1400v234c-28 12-58 24-88 34-118 41-239 74-362 99-138 29-278 45-419 46-34 0-68-1-102-3-118-7-234-24-347-53-48-12-96-26-143-43V705z'/%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+            background-size: cover;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+            filter: blur(4px);
+        }
+
+        /* 2. ESTRELLAS GLOBITO TRIDIMENSIONALES GRANDES */
+        .estrella-globo {
+            position: fixed;
+            background: rgba(255, 255, 255, 0.12);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: flotarGlobo linear infinite;
+            z-index: 1;
+            pointer-events: none;
+            box-shadow:
+                inset 0 0 18px rgba(255, 255, 255, 0.65),
+                inset -5px -5px 15px rgba(0, 0, 0, 0.2),
+                0 8px 20px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(1px);
+        }
+
+        .estrella-globo::before {
+            content: '';
+            position: absolute;
+            top: 15%;
+            left: 22%;
+            width: 22%;
+            height: 22%;
+            background: rgba(255, 255, 255, 0.75);
+            border-radius: 50%;
+            transform: rotate(-30deg);
+        }
+
+        @keyframes flotarGlobo {
+            0% { transform: translateY(110vh) scale(0.9) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.85; }
+            90% { opacity: 0.85; }
+            100% { transform: translateY(-20vh) scale(1.2) rotate(30deg); opacity: 0; }
+        }
+
+        /* 3. CONTENEDOR HOLGADO Y PRINCIPAL */
+        .contenedor {
+            width: 95%;
+            max-width: 750px;
+            padding: 60px 0;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 2.6rem;
+            color: #ffffff;
+            text-shadow: 0 4px 12px rgba(0,0,0,0.6);
+            margin-bottom: 55px;
+            text-align: center;
+            letter-spacing: 0.5px;
+        }
+
+        p.frase-central {
+            font-size: 1.35rem;
+            line-height: 1.7;
+            color: #e2ebd5;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+            font-weight: 500;
+            margin: 50px auto;
+            text-align: center;
+            max-width: 600px;
+        }
+
+        /* 4. MARCOS MULTIMEDIA Y FILAS LATERALES */
+        .marco-blanco {
+            border-radius: 20px;
+            border: 6px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            background-color: #f7f9f6;
+            box-sizing: border-box;
+            transition: transform 0.4s ease;
+        }
+
+        .fila-laterales {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin: 35px 0;
+            gap: 20px;
+        }
+
+        .foto-lateral {
+            width: 45%;
+        }
+
+        .foto-lateral:hover {
+            transform: scale(1.06);
+            z-index: 15;
+        }
+
+        .video-centro {
+            width: 85%;
+            max-width: 600px;
+            margin: 60px 0;
+            align-self: center;
+        }
+
+        /* 5. INTERFAZ DE BOTONES */
+        .botones {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            height: 130px;
+            width: 100%;
+            margin-top: 45px;
+        }
+
+        .btn-accion {
+            padding: 16px 45px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        #btnSi { background-color: #2e7d32; color: white; }
+        #btnSi:hover { transform: scale(1.1); background-color: #1b5e20; box-shadow: 0 10px 25px rgba(46,125,50,0.4); }
+        #btnNo { background-color: #e57373; color: white; position: absolute; }
+
+        /* 6. MODAL CON DISEÑO VERDE CRISTALINO (GLASSMORPHISM) */
+        #modalExito {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(11, 40, 20, 0.95);
+            backdrop-filter: blur(15px);
+            color: #f1f7ed;
+            padding: 40px 30px;
+            border-radius: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 65px rgba(0,0,0,0.8);
+            z-index: 2000;
+            width: 88%;
+            max-width: 480px;
+            text-align: center;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        #modalExito h2 { color: #57cc99; margin-top: 0; font-size: 1.8rem; font-weight: bold; line-height: 1.3; }
+        #modalExito p { color: #e2ebd5; font-size: 1.2rem; line-height: 1.75; font-weight: 500; text-align: center; margin: 25px 0; text-shadow: none; }
+        #modalExito button { background: #57cc99; color: #0b1a10; margin-top: 20px; padding: 14px 30px; font-size: 1.15rem; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 100%; max-width: 380px;}
+
+        #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; backdrop-filter: blur(7px); }
+        
+        /* BOTÓN DE INICIO */
+        #overlayInicio {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: #0b1a10; z-index: 9999; display: flex;
-            flex-direction: column; justify-content: center; align-items: center;
+            justify-content: center; align-items: center;
         }
-        .btn-inicio { padding: 20px 40px; font-size: 1.5rem; border-radius: 50px; border: none; background: #57cc99; color: #0b1a10; cursor: pointer; font-weight: bold; }
-
-        /* EL RESTO DEL DISEÑO (OCULTO AL INICIO) */
-        #contenidoPrincipal { display: none; }
-        
-        /* MANTENEMOS TU DISEÑO ANTERIOR */
-        body { background-image: radial-gradient(circle at 80% 20%, rgba(34, 76, 50, 0.6) 0%, transparent 50%), radial-gradient(circle at 20% 80%, rgba(18, 48, 30, 0.8) 0%, transparent 60%); background-attachment: fixed; }
-        .contenedor { width: 95%; max-width: 750px; margin: auto; padding: 60px 0; display: flex; flex-direction: column; align-items: center; }
-        .marco-blanco { border-radius: 20px; border: 6px solid white; box-shadow: 0 15px 35px rgba(0,0,0,0.4); margin: 30px 0; }
-        .video-centro { width: 85%; max-width: 600px; }
-        .fila-laterales { display: flex; justify-content: space-between; width: 100%; gap: 20px; }
-        .foto-lateral { width: 45%; border-radius: 20px; border: 6px solid white; }
-        .btn-accion { padding: 16px 45px; font-size: 1.3rem; font-weight: bold; border: none; border-radius: 50px; cursor: pointer; }
-        #btnSi { background-color: #2e7d32; color: white; }
-        #btnNo { background-color: #e57373; color: white; position: absolute; }
-        #modalExito { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(11, 40, 20, 0.95); padding: 40px; border-radius: 32px; z-index: 2000; text-align: center; width: 80%; }
-        #overlay { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.75); z-index:1999; }
+        .btn-bienvenida {
+            padding: 20px 40px; font-size: 1.5rem; font-weight: bold;
+            background: #2e7d32; color: white; border: none; border-radius: 50px;
+            cursor: pointer; box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
     </style>
 </head>
 <body>
 
-    <div id="pantallaInicio">
-        <h1 style="color:white; margin-bottom: 30px;">¡Hola, amor! ❤️</h1>
-        <button class="btn-inicio" onclick="iniciarExperiencia()">Para mi bebito fiu fiu</button>
+<div id="overlayInicio">
+    <button class="btn-bienvenida" onclick="iniciarTodo()">Para mi bebito fiu fiu ❤️</button>
+</div>
+
+<audio id="miMusica" loop preload="auto">
+    <source src="musica.mp3">
+</audio>
+
+<div class="contenedor">
+    <h1>Para mi persona favorita... 👑❤️</h1>
+
+    <div class="fila-laterales">
+        <img src="mascaras.jpeg" class="marco-blanco foto-lateral">
+        <img src="mascarillas.jpeg" class="marco-blanco foto-lateral">
     </div>
 
-    <div id="contenidoPrincipal">
-        <audio id="miMusica" loop preload="auto">
-            <source src="musica.mp3" type="audio/mpeg">
-        </audio>
+    <p class="frase-central">
+        Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto. A veces eres más duro contigo mismo de lo que deberías, pero quiero que recuerdes algo: eres una persona increíblemente inteligente, capaz y trabajadora.
+    </p>
 
-        <div class="contenedor">
-            <h1>Para mi persona favorita... 👑❤️</h1>
-            
-            <div class="fila-laterales">
-                <img src="mascaras.jpeg" class="foto-lateral">
-                <img src="mascarillas.jpeg" class="foto-lateral">
-            </div>
-
-            <p style="font-size: 1.3rem; text-align: center; max-width: 600px; margin: 30px 0;">
-                Amor, solo quería recordarte antes de tu examen lo orgullosa que estoy de ti. Sé lo importante que es para ti y también sé todo el esfuerzo, tiempo y dedicación que le has puesto.
-            </p>
-
-            <video autoplay muted loop playsinline class="marco-blanco video-centro">
-                <source src="coqueto.mp4" type="video/mp4">
-            </video>
-
-            <div class="fila-laterales">
-                <img src="pepito.jpeg" class="foto-lateral">
-                <img src="angel.jpeg" class="foto-lateral">
-            </div>
-
-            <video autoplay muted loop playsinline class="marco-blanco video-centro">
-                <source src="terry.mp4" type="video/mp4">
-            </video>
-
-            <div class="botones" style="height: 150px; position: relative;">
-                <button id="btnSi" class="btn-accion" onclick="mostrarExito()">¡Sí, lo haré! 🧠✨</button>
-                <button id="btnNo" class="btn-accion">No puedo...</button>
-            </div>
-        </div>
+    <div class="fila-laterales" style="justify-content: flex-start;">
+        <img src="lola.jpeg" class="marco-blanco foto-lateral">
     </div>
 
-    <div id="overlay"></div>
-    <div id="modalExito">
-        <h2 style="color: #57cc99;">¡Esa es la actitud, mi amor! 🏆🎉</h2>
-        <button onclick="cerrarModal()" style="padding: 15px; border-radius: 20px; border:none; cursor:pointer;">Cerrar</button>
+    <video id="vid1" muted loop playsinline class="marco-blanco video-centro">
+        <source src="coqueto.mp4" type="video/mp4">
+    </video>
+
+    <p class="frase-central">
+        Confío muchísimo en ti y en todo lo que sabes. No llegaste hasta aquí por suerte, llegaste porque te esforzaste y porque tienes la capacidad para lograr lo que te propones. Así que ve con confianza, respira y demuestra todo lo que has aprendido.
+    </p>
+
+    <div class="fila-laterales">
+        <img src="pepito.jpeg" class="marco-blanco foto-lateral">
+        <img src="angel.jpeg" class="marco-blanco foto-lateral">
     </div>
 
-    <script>
-        function iniciarExperiencia() {
-            // Ocultar inicio, mostrar contenido
-            document.getElementById('pantallaInicio').style.display = 'none';
-            document.getElementById('contenidoPrincipal').style.display = 'block';
-            
-            // Reproducir música
-            const musica = document.getElementById('miMusica');
-            musica.play();
-        }
+    <div class="fila-laterales">
+        <img src="milo.jpeg" class="marco-blanco foto-lateral">
+        <img src="nata.jpeg" class="marco-blanco foto-lateral">
+    </div>
 
-        const btnNo = document.getElementById('btnNo');
-        btnNo.addEventListener('mouseenter', () => {
-            btnNo.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            btnNo.style.top = Math.random() * (window.innerHeight - 100) + 'px';
-        });
+    <video id="vid2" muted loop playsinline class="marco-blanco video-centro">
+        <source src="terry.mp4" type="video/mp4">
+    </video>
 
-        function mostrarExito() {
-            document.getElementById('modalExito').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-        }
-        function cerrarModal() {
-            document.getElementById('modalExito').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-        }
-    </script>
+    <p class="frase-central">
+        Y pase lo que pase, quiero que sepas que siempre voy a estar para ti. Mi apoyo, mi cariño y mi admiración por ti no dependen de una calificación ni de un examen. Te quiero en tus mejores días y también en los difíciles. Eres una de las personas más especiales de mi vida y sé que puedes lograr grandes cosas. Te amo muchísimo y estoy segura de que te va a ir muy bien. ❤️
+    </p>
+
+    <div class="fila-laterales">
+        <img src="la.jpeg" class="marco-blanco foto-lateral">
+        <img src="mejor.jpeg" class="marco-blanco foto-lateral">
+    </div>
+
+    <p class="frase-central" style="font-weight: bold; color: #57cc99;">¿Me prometes que vas a dar lo mejor de ti hoy? ✨</p>
+
+    <div class="botones">
+        <button id="btnSi" class="btn-accion" onclick="mostrarExito()">¡Sí, lo haré! 🧠✨</button>
+        <button id="btnNo" class="btn-accion">No puedo...</button>
+    </div>
+</div>
+
+<div id="overlay"></div>
+<div id="modalExito">
+    <h2>¡Esa es la actitud, mi amor! 🏆🎉</h2>
+    <p>
+        Sabía que ibas a decir que sí. Ahora ve con toda la seguridad del mundo a romper ese examen. ¡Cómete el mundo, que aquí voy a estar esperándote para celebrar!
+    </p>
+    <p style="font-size: 1.4rem; font-weight: bold; color: #57cc99;">
+        ¡Te amo muchísimo! ❤️🚀
+    </p>
+    <button onclick="cerrarModal()">Te voy a llevar en mi corazón siempre ❤️</button>
+</div>
+
+<script>
+    const musica = document.getElementById('miMusica');
+    const btnNo = document.getElementById('btnNo');
+    const overlayInicio = document.getElementById('overlayInicio');
+    const vids = [document.getElementById('vid1'), document.getElementById('vid2')];
+
+    function iniciarTodo() {
+        musica.play();
+        vids.forEach(v => v.play());
+        overlayInicio.style.display = 'none';
+    }
+
+    function moverBotonNo() {
+        const x = Math.random() * (window.innerWidth - btnNo.offsetWidth - 25);
+        const y = Math.random() * (window.innerHeight - btnNo.offsetHeight - 25);
+        btnNo.style.position = 'fixed';
+        btnNo.style.left = `${x}px`;
+        btnNo.style.top = `${y}px`;
+        btnNo.style.zIndex = "1000";
+    }
+
+    btnNo.addEventListener('mouseenter', () => moverBotonNo());
+    btnNo.addEventListener('touchstart', () => moverBotonNo());
+
+    function mostrarExito() {
+        document.getElementById('modalExito').style.display = 'block';
+        document.getElementById('overlay').style.display = 'block';
+        btnNo.style.display = 'none';
+    }
+
+    function cerrarModal() {
+        document.getElementById('modalExito').style.display = 'none';
+        document.getElementById('overlay').style.display = 'none';
+    }
+
+    function crearEstrellaGlobo() {
+        const estrella = document.createElement('div');
+        estrella.classList.add('estrella-globo');
+        const tamaño = Math.random() * 35 + 35;
+        estrella.style.width = `${tamaño}px`;
+        estrella.style.height = `${tamaño}px`;
+        estrella.style.left = Math.random() * window.innerWidth + 'px';
+        const duracion = Math.random() * 10 + 7;
+        estrella.style.animationDuration = `${duracion}s`;
+        document.body.appendChild(estrella);
+        setTimeout(() => { estrella.remove(); }, duracion * 1000);
+    }
+    setInterval(crearEstrellaGlobo, 450);
+</script>
 </body>
 </html>
